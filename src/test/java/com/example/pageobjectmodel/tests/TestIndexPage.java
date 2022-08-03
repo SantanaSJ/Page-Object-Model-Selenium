@@ -3,29 +3,12 @@ package com.example.pageobjectmodel.tests;
 import com.example.pageobjectmodel.pageObjects.IndexPage;
 import com.example.pageobjectmodel.pageObjects.LoginPage;
 import com.example.pageobjectmodel.pageObjects.RegisterPage;
-import org.junit.jupiter.api.*;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-@TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class TestIndexPage {
-
-    private WebDriver driver;
-
-    @BeforeAll
-    public void setUp() {
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\User\\Desktop\\drivers\\chromedriver.exe");
-        this.driver = new ChromeDriver();
-    }
-
-
-    @AfterAll
-    public void tearDown() {
-        this.driver.quit();
-    }
+public class TestIndexPage extends BaseTest {
 
     @Test
     public void test_indexPage_titleAndHeading() {
