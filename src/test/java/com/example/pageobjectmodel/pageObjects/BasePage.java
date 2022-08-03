@@ -37,8 +37,6 @@ public class BasePage {
 
     public void open() {
         this.driver.get(this.pageUrl);
-
-        System.out.println();
     }
 
     //    is current page open
