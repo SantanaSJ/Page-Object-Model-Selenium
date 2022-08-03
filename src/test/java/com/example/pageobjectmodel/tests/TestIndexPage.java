@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class TestIndexPage extends BaseTest {
 
     @Test
-    public void test_indexPage_titleAndHeading() {
+    public void indexPage_titleAndHeading() {
         IndexPage indexPage = new IndexPage(this.driver);
         indexPage.open();
         assertEquals("BookIt", indexPage.getPageTitle());
@@ -21,7 +21,7 @@ public class TestIndexPage extends BaseTest {
     }
 
     @Test
-    public void test_indexPage_links() {
+    public void indexPage_links() {
         IndexPage indexPage = new IndexPage(this.driver);
         indexPage.open();
 

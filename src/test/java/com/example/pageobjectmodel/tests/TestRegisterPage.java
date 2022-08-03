@@ -1,7 +1,6 @@
 package com.example.pageobjectmodel.tests;
 
 import com.example.pageobjectmodel.pageObjects.HomePage;
-import com.example.pageobjectmodel.pageObjects.IndexPage;
 import com.example.pageobjectmodel.pageObjects.LoginPage;
 import com.example.pageobjectmodel.pageObjects.RegisterPage;
 import org.junit.jupiter.api.Test;
@@ -12,14 +11,14 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class TestRegisterPage extends BaseTest {
 
     @Test
-    public void test_registerPage_is_open() {
+    public void registerPage_is_open() {
         RegisterPage registerPage = new RegisterPage(this.driver);
         registerPage.open();
         assertTrue(registerPage.isCurrentPageOpen());
     }
 
     @Test
-    public void test_registerPageHeading() {
+    public void registerPageHeading() {
         RegisterPage registerPage = new RegisterPage(this.driver);
         registerPage.open();
 
@@ -27,7 +26,7 @@ public class TestRegisterPage extends BaseTest {
     }
 
     @Test
-    public void test_empty_input_fields() {
+    public void empty_input_fields() {
         RegisterPage registerPage = new RegisterPage(this.driver);
         registerPage.open();
         assertEquals("", registerPage.firstNameField().getText());
@@ -42,7 +41,7 @@ public class TestRegisterPage extends BaseTest {
     }
 
     @Test
-    public void test_indexPage_links() {
+    public void indexPage_links() {
         RegisterPage registerPage = new RegisterPage(this.driver);
         registerPage.open();
 
@@ -50,7 +49,7 @@ public class TestRegisterPage extends BaseTest {
 //        assertEquals("SERVICES", indexPage.getIndexServiceHeadingText());
 
         registerPage.linkHomePage().click();
-        assertTrue(new IndexPage(driver).isCurrentPageOpen());
+        assertTrue(new LoginPage(driver).isCurrentPageOpen());
 
         registerPage.linkRegisterPage().click();
         assertTrue(new RegisterPage(driver).isCurrentPageOpen());
@@ -62,7 +61,7 @@ public class TestRegisterPage extends BaseTest {
     }
 
     @Test
-    public void test_register_valid_user() {
+    public void register_valid_user() {
         RegisterPage registerPage = new RegisterPage(this.driver);
         registerPage.open();
         String newUserName = getNewUserName();
@@ -75,7 +74,22 @@ public class TestRegisterPage extends BaseTest {
         assertTrue(homePage.isCurrentPageOpen());
         assertEquals(newUserName, homePage.getPageUsernameTitleText());
 
+        homePage.logout();
 
+
+    }
+
+    @Test
+    public void register_user_with_non_unique_email() {
+        RegisterPage registerPage = new RegisterPage(this.driver);
+
+        registerPage.open();
+        registerPage.addValidUser("TestUser", "TestUser",
+                "Rex", "12",
+                "0885544333", "testuser@email.com",
+                "a123456789A#", "a123456789A#");
+
+        assertEquals("Email already exists. Please log in.", registerPage.getUniqueEmailErrorText());
     }
 
     private String getNewUserName() {

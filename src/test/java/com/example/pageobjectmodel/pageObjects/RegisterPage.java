@@ -67,6 +67,13 @@ public class RegisterPage extends BasePage {
         executor.executeScript("arguments[0].click()", this.registerButton());
     }
 
+    public WebElement getUniqueEmailError() {
+       return this.driver.findElement(By.id("email_addressError"));
+    }
+
+    public String getUniqueEmailErrorText() {
+       return getUniqueEmailError().getText();
+    }
 
 
 

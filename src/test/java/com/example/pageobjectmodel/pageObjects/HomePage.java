@@ -19,4 +19,9 @@ public class HomePage extends BasePage {
     public String getPageUsernameTitleText() {
       return pageUsernameTitle().getText();
     }
+
+    public void logout() {
+        this.driver.findElement(By.id("navbarDarkProfileMenuLink")).click();
+        this.driver.findElement(By.linkText("Logout")).click();
+    }
 }
