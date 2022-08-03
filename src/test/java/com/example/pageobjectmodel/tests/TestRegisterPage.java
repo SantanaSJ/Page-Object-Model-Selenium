@@ -89,6 +89,7 @@ public class TestRegisterPage extends BaseTest {
                 "0885544333", "testuser@email.com",
                 "a123456789A#", "a123456789A#");
 
+        assertTrue(registerPage.isCurrentPageOpen());
         assertEquals("Email already exists. Please log in.", registerPage.getUniqueEmailErrorText());
     }
 
